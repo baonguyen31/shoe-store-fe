@@ -1,37 +1,19 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.puma.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'upload.wikimedia.org',
-        pathname: '/**',
-      },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'images.puma.com' },
+      { protocol: 'https', hostname: 'upload.wikimedia.org' },
     ],
   },
-  // Bỏ qua lỗi ESLint khi build
   eslint: {
-    // @ts-ignore
-    // @ts-ignore
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // @ts-ignore
     ignoreBuildErrors: true,
   },
-} as NextConfig;
-
-
+} as any; // Dùng any ở đây để ép Vercel chấp nhận mọi thuộc tính mở rộng
 
 export default nextConfig;

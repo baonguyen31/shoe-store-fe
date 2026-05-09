@@ -1,5 +1,6 @@
-// src/services/api.ts
-const API_URL = "http://localhost:8080";
+import { API_CONFIG } from "@/config/apiConfig";
+
+const API_URL = API_CONFIG.BASE_URL;
 
 export const apiRequest = async (endpoint: string, method: string = "GET", body: unknown = null) => {
     // Lấy token từ sessionStorage

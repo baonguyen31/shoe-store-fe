@@ -3,8 +3,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { Plus, Search, CheckCircle2, Lock, ChevronLeft, ChevronRight, X, ArrowLeft, Edit, UserCog, User, Loader2, MapPin, Eye, EyeOff, RotateCw } from "lucide-react";
 
+import { API_CONFIG, API_ENDPOINTS } from "@/config/apiConfig";
+
 const USERS_PER_PAGE = 5;
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = API_CONFIG.BASE_URL;
 
 interface User {
   id: number;

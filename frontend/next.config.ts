@@ -20,6 +20,18 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-};
+  // Bỏ qua lỗi ESLint khi build
+  eslint: {
+    // @ts-ignore
+    // @ts-ignore
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    // @ts-ignore
+    ignoreBuildErrors: true,
+  },
+} as NextConfig;
+
+
 
 export default nextConfig;

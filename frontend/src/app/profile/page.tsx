@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Edit, CheckCircle2, Loader2, Lock, Eye, EyeOff, MapPin } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import toast from 'react-hot-toast';
+import { API_ENDPOINTS } from '@/config/apiConfig';
 
 export default function ProfilePage() {
   // 1. STATE QUẢN LÝ DỮ LIỆU
@@ -44,7 +45,7 @@ export default function ProfilePage() {
           token = token.replace(/^["'](.+)["']$/, '$1').trim();
         }
 
-        const response = await fetch(`http://localhost:8080/api/auth/me`, {
+        const response = await fetch(API_ENDPOINTS.AUTH.ME, {
           headers: { "Authorization": `Bearer ${token}` }
         });
 
@@ -115,7 +116,7 @@ export default function ProfilePage() {
       updateData.password = passwords.newPassword;
     }
 
-    const response = await fetch(`http://localhost:8080/api/customers/${userInfo.id}`, {
+    const response = await fetch(API_ENDPOINTS.CUSTOMERS.DETAIL(userInfo.id), {
       method: "PUT",
       headers: {
         "Authorization": `Bearer ${token}`,

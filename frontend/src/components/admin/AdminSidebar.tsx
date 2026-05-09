@@ -11,6 +11,7 @@ import {
   LogOut,
   User
 } from 'lucide-react';
+import { API_ENDPOINTS } from '@/config/apiConfig';
 
 export default function AdminSidebar() {
   const pathname = usePathname();
@@ -28,7 +29,7 @@ export default function AdminSidebar() {
 
       if (!name && token) {
         try {
-          const res = await fetch("http://localhost:8080/api/auth/me", {
+          const res = await fetch(API_ENDPOINTS.AUTH.ME, {
             headers: { "Authorization": `Bearer ${token}` }
           });
           if (res.ok) {

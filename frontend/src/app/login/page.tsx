@@ -14,6 +14,7 @@ import {
   Eye,
   EyeOff,
 } from "lucide-react";
+import { API_ENDPOINTS } from "@/config/apiConfig";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -43,7 +44,7 @@ const LoginPage = () => {
     setIsLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8080/login", {
+      const res = await fetch(API_ENDPOINTS.AUTH.LOGIN, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: email, password }),
@@ -57,7 +58,7 @@ const LoginPage = () => {
 
         // Lấy thông tin người dùng
         try {
-          const meRes = await fetch("http://localhost:8080/api/auth/me", {
+          const meRes = await fetch(API_ENDPOINTS.AUTH.ME, {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (meRes.ok) {
@@ -80,7 +81,7 @@ const LoginPage = () => {
         setIsLoading(false);
       }
     } catch (error) {
-      showToast("Lỗi kết nối máy chủ 8080!", "error");
+      showToast("Lỗi kết nối máy chủ!", "error");
       setIsLoading(false);
     }
   };
@@ -97,7 +98,7 @@ const LoginPage = () => {
 
     try {
       // Gọi API reset password bên Backend (đã hướng dẫn ở bước trước)
-      const res = await fetch("http://localhost:8080/forgot-password", {
+      const res = await fetch(API_ENDPOINTS.AUTH.FORGOT_PASSWORD, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

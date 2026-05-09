@@ -5,6 +5,7 @@ import { ArrowRight, ChevronLeft, Eye, EyeOff, AlertCircle, Loader2 } from 'luci
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
+import { API_ENDPOINTS } from '@/config/apiConfig';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -60,7 +61,7 @@ export default function RegisterPage() {
     };
 
     try {
-      const res = await fetch("http://localhost:8080/register/customers", {
+      const res = await fetch(API_ENDPOINTS.AUTH.REGISTER, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(registerData),

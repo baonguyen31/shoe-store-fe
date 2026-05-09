@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { Loader2, Smartphone, ShieldCheck, ArrowLeft, Copy, Check } from "lucide-react";
+import { API_ENDPOINTS } from "@/config/apiConfig";
 
 interface PaymentData {
   qrUrl: string;
@@ -25,7 +26,7 @@ function MomoPaymentContent() {
 
   useEffect(() => {
     if (orderId) {
-      fetch(`http://localhost:8080/api/payment/momo/create_payment?orderId=${orderId}`, {
+      fetch(`${API_ENDPOINTS.PAYMENT.MOMO_CREATE}?orderId=${orderId}`, {
         headers: { "Authorization": `Bearer ${sessionStorage.getItem("token")}` }
       })
       .then(res => res.json())
@@ -41,7 +42,7 @@ function MomoPaymentContent() {
   const handleConfirm = async () => {
     setIsConfirming(true);
     try {
-      const res = await fetch(`http://localhost:8080/api/payment/momo/sync?orderId=${orderId}&resultCode=0`, {
+      const res = await fetch(`${API_ENDPOINTS.PAYMENT.MOMO_SYNC}?orderId=${orderId}&resultCode=0`, {
         method: "GET",
         headers: { "Authorization": `Bearer ${sessionStorage.getItem("token")}` }
       });

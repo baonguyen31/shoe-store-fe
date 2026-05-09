@@ -5,12 +5,14 @@ import Link from 'next/link';
 import { Truck, ShieldCheck, RefreshCw } from 'lucide-react';
 import { Product } from '@/types';
 
+import { API_ENDPOINTS } from '@/config/apiConfig';
+
 export const dynamic = "force-dynamic";
 
 // Hàm lấy dữ liệu sản phẩm từ API
 async function getProducts() {
   try {
-    const res = await fetch('http://localhost:8080/api/products?page_size=1000', { 
+    const res = await fetch(`${API_ENDPOINTS.PRODUCTS.LIST}?page_size=1000`, { 
       cache: 'no-store' 
     });
     if (!res.ok) return [];
@@ -44,7 +46,7 @@ async function getProducts() {
 // Hàm lấy sản phẩm bán chạy
 async function getBestSellers() {
   try {
-    const res = await fetch('http://localhost:8080/api/products/best-sellers?page_size=4', { 
+    const res = await fetch(`${API_ENDPOINTS.PRODUCTS.BEST_SELLERS}?page_size=4`, { 
       cache: 'no-store' 
     });
     if (!res.ok) return [];

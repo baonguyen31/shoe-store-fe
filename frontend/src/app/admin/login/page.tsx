@@ -12,7 +12,7 @@ import {
   Eye,
   EyeOff,
   ShieldAlert,
-} from "lucide-react";
+import { API_ENDPOINTS } from "@/config/apiConfig";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -34,7 +34,7 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8080/login", {
+      const response = await fetch(API_ENDPOINTS.AUTH.LOGIN, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: email, password }),
@@ -47,7 +47,7 @@ export default function LoginPage() {
         // --- ĐOẠN KIỂM TRA ROLE BỔ SUNG ---
         // Thử gọi 1 API chỉ dành cho Admin để kiểm tra xem Token này có quyền STAFF/ADMIN không
         const checkRole = await fetch(
-          "http://localhost:8080/api/employers?page_no=0&page_size=1",
+          `${API_ENDPOINTS.EMPLOYERS.LIST}?page_no=0&page_size=1`,
           {
             headers: { Authorization: `Bearer ${token}` },
           },
@@ -64,7 +64,7 @@ export default function LoginPage() {
 
         // Lấy thêm thông tin nhân viên
         try {
-          const meRes = await fetch("http://localhost:8080/api/auth/me", {
+          const meRes = await fetch(API_ENDPOINTS.AUTH.ME, {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (meRes.ok) {

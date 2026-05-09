@@ -6,12 +6,12 @@ import {
   Lock,
   Mail,
   Loader2,
-  ArrowRight,
   XCircle,
   CheckCircle2,
   Eye,
   EyeOff,
   ShieldAlert,
+} from "lucide-react";
 import { API_ENDPOINTS } from "@/config/apiConfig";
 
 export default function LoginPage() {
